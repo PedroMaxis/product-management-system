@@ -1,0 +1,201 @@
+* Estilos globais */
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: #e5e5e5;
+  margin: 0;
+  padding: 0;
+  color: #444;
+}
+
+/* Títulos */
+h1, h2, h3 {
+  color: #222;
+  text-align: center;
+  font-weight: 300;
+  margin-bottom: 20px;
+}
+
+/* Container principal */
+.container {
+  width: 90%;
+  max-width: 900px;
+  margin: 30px auto;
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+/* Estilo para o formulário */
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+form input, form textarea {
+  width: 100%;
+  max-width: 600px;
+  padding: 12px;
+  font-size: 16px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  transition: border-color 0.3s;
+}
+
+form input:focus, form textarea:focus {
+  border-color: #80bdff;
+  outline: none;
+}
+
+form button {
+  padding: 12px 30px;
+  font-size: 16px;
+  color: #fff;
+  background-color: #007bff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s, transform 0.1s ease-in-out, box-shadow 0.3s;
+}
+
+form button:hover {
+  background-color: #0056b3;
+  transform: scale(1.05);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Estilo para a lista de produtos */
+.product-list {
+  list-style: none;
+  padding: 0;
+  margin: 20px 0;
+}
+
+.product-list li {
+  background-color: #f9f9f9;
+  margin-bottom: 20px;
+  padding: 20px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.05);
+}
+
+#deletebtn
+{
+  background-color: #dc3545;
+  border: none;
+  color: #fff;
+  padding: 4px;
+  border-radius: 2px;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s, transform 0.1s ease-in-out, box-shadow 0.3s;
+}
+
+.product-list h3 {
+  margin: 0;
+  color: #007bff;
+  font-weight: 400;
+}
+
+.product-list p {
+  margin: 8px 0;
+  color: #555;
+  text-align: left;
+  flex: 1;
+}
+
+/* Botões da lista de produtos */
+.product-list .actions {
+  display: flex;
+  gap: 10px;
+}
+
+.product-list button, .product-list a {
+  padding: 8px 16px;
+  font-size: 14px;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.1s ease-in-out, box-shadow 0.3s;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.product-list button {
+  background-color: #dc3545;
+  border: none;
+}
+
+.product-list button:hover {
+  background-color: #c82333;
+  transform: scale(1.05);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.product-list a {
+  background-color: #007bff;
+}
+
+.product-list a:hover {
+  background-color: #0056b3;
+  transform: scale(1.05);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Estilo para os detalhes do produto */
+.product-details {
+  text-align: left;
+}
+
+.product-details p {
+  margin: 8px 0;
+  color: #333;
+}
+
+/* Link de volta */
+.back-link {
+  display: inline-block;
+  margin-top: 25px;
+  padding: 12px 30px;
+  font-size: 14px;
+  color: #fff;
+  background-color: #007bff;
+  text-decoration: none;
+  border-radius: 6px;
+  transition: background-color 0.3s, transform 0.1s ease-in-out, box-shadow 0.3s;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.back-link:hover {
+  background-color: #0056b3;
+  transform: scale(1.05);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Estilos de responsividade */
+@media (max-width: 600px) {
+  .container {
+      width: 100%;
+      padding: 20px;
+  }
+
+  form input, form textarea {
+      width: 100%;
+  }
+
+  form button, .product-list button, .product-list a {
+      width: 100%;
+  }
+
+  .product-list {
+      gap: 15px;
+      flex-direction: column;
+  }
+}
