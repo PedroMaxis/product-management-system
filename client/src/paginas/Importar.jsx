@@ -14,6 +14,14 @@ export default function Importar() {
   const raiz = useRef(null);
 
 
+  // no demo não há servidor para entregar o arquivo: gera o CSV no navegador e baixa
+  const baixar = async () => {
+    const csv = await api("/export.csv");
+    const link = Object.assign(document.createElement("a"), { href: URL.createObjectURL(new Blob([csv], { type: "text/csv;charset=utf-8" })), download: "estoque.csv" });
+    link.click();
+    URL.revokeObjectURL(link.href);
+  };
+
   const escolher = async (e) => {
     const f = e.target.files?.[0];
     setSim(null); setErro(null); setFeito(null);
@@ -38,7 +46,9 @@ export default function Importar() {
         <section className="bloco">
           <h2>1. Exportar</h2>
           <p>Baixe o estoque atual em CSV (abre direto no Excel, com acentos e vírgula decimal). Use o arquivo como modelo.</p>
-          <a className="btn" href="/api/export.csv" download>Baixar estoque.csv</a>
+          {import.meta.env.VITE_DEMO
+            ? <button className="btn" onClick={baixar}>Baixar estoque.csv</button>
+            : <a className="btn" href="/api/export.csv" download>Baixar estoque.csv</a>}
           <p className="nota">Colunas: sku; nome; categoria; descricao; preco; custo; quantidade; estoque_minimo. Só <b>sku</b> e <b>nome</b> são obrigatórias.</p>
         </section>
 

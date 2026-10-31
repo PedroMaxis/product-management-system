@@ -97,7 +97,7 @@ test("lista com busca sem acento, filtros, ordenação e paginação", async () 
 });
 
 test("o seed de demonstração gera um histórico coerente (saldo nunca negativo e fecha com o estoque atual)", () => {
-  const { semear, PRODUTOS } = require("../scripts/seed");
+  const { semear, PRODUTOS } = require("../scripts/dados-demo");
   assert.equal(semear(t.db), PRODUTOS.length);
   const ruins = t.db.prepare(`SELECT p.sku FROM products p WHERE p.quantity != COALESCE((SELECT balance FROM movements m WHERE m.product_id = p.id ORDER BY m.id DESC LIMIT 1), 0)`).all();
   assert.deepEqual(ruins, [], "o último saldo do histórico é a quantidade atual");

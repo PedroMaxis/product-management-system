@@ -2,6 +2,8 @@
 
 Sistema de controle de estoque: cadastro de produtos, **movimentações com histórico** (entrada, saída e ajuste de inventário), alertas de estoque mínimo, painel com números e gráficos, busca, filtros, importação e exportação em CSV. API em **Express + SQLite** e front em **React + Vite**, com interface administrativa moderna e sóbria (barra lateral, indicadores com ícone, medidor de estoque por produto).
 
+**Demo online:** https://pedromaxis.github.io/product-management-system/ (roda inteiro no navegador, sem servidor; os dados voltam ao início a cada visita).
+
 | Painel | Produtos | Produto |
 |---|---|---|
 | ![Painel](docs/painel.png) | ![Produtos](docs/produtos.png) | ![Produto](docs/produto.png) |
@@ -48,6 +50,10 @@ npm --prefix client run build
 ## Em produção
 
 `npm --prefix client run build` gera `client/dist`, e o Express passa a servir o front no mesmo endereço da API. O `render.yaml` descreve o serviço no Render, com disco persistente para o SQLite.
+
+### Demo no GitHub Pages
+
+O GitHub Pages só serve arquivos estáticos, então o demo roda as **mesmas regras da API** dentro do navegador: o `src/estoque.js` é empacotado pelo Vite e conversa com um SQLite em WebAssembly ([sql.js](https://github.com/sql-js/sql.js)) por um adaptador com a mesma interface do `node:sqlite` (`client/src/demo`). O esquema (`src/esquema.js`) e a semeadura (`scripts/dados-demo.js`) são compartilhados com o servidor. Para gerar: `npm --prefix client run build:demo`.
 
 ## API
 
