@@ -62,10 +62,10 @@ export default function Produto() {
   return (
     <main className="pagina" ref={raiz}>
       <button className="link voltar" onClick={() => ir(-1)}>← Voltar</button>
-      <div className="topo-pagina">
+      <header className="cabeca">
         <div><span className="mono sku-grande">{p.sku} · {p.category}</span><h1 className="titulo">{p.name}</h1>{p.description && <p className="descricao">{p.description}</p>}</div>
         <div className="acoes-linha"><Estado status={p.status} />{p.active && <button className="btn vazado" onClick={() => setForm({ tipo: "produto" })}>Editar</button>}<button className="btn vazado" onClick={alternarArquivo}>{p.active ? "Arquivar" : "Restaurar"}</button></div>
-      </div>
+      </header>
 
       <div className="etiquetas">
         <div className="etiqueta destaque"><span className="rotulo">Em estoque</span><Numero valor={p.quantity} className="valor" formatar={inteiro} /><small>mínimo {p.minQuantity}</small></div>

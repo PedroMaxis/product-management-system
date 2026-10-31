@@ -5,6 +5,7 @@ import Estado from "../componentes/Estado";
 import FormMovimento from "../componentes/FormMovimento";
 import Grafico from "../componentes/Grafico";
 import Numero from "../componentes/Numero";
+import { IcAlerta, IcCamadas, IcCaixa, IcMoeda, IcTendencia, IcVazio } from "../componentes/Icones";
 import { api } from "../lib/api";
 import { dataHora, inteiro, reais, ROTULO_TIPO } from "../lib/formatos";
 
@@ -22,23 +23,24 @@ export default function Painel() {
   if (r.products === 0) return (
     <main className="pagina" ref={raiz}>
       <h1 className="titulo">Painel</h1>
-      <div className="vazio"><h2>O almoxarifado está vazio</h2><p>Cadastre o primeiro produto ou importe uma planilha CSV.</p><div className="acoes-linha"><Link className="btn" to="/produtos?novo=1">Cadastrar produto</Link><Link className="btn vazado" to="/importar">Importar CSV</Link></div></div>
+      <div className="vazio"><IcVazio className="ic-vazio" /><h2>O almoxarifado está vazio</h2><p>Cadastre o primeiro produto ou importe uma planilha CSV.</p><div className="acoes-linha"><Link className="btn" to="/produtos?novo=1">Cadastrar produto</Link><Link className="btn vazado" to="/importar">Importar CSV</Link></div></div>
     </main>
   );
 
   const alertas = r.outOfStock + r.lowStock;
   return (
     <main className="pagina" ref={raiz}>
-      <h1 className="titulo">Painel</h1>
+      <header className="cabeca"><div><h1 className="titulo">Painel</h1><p className="subtitulo">Visão geral do estoque e do que precisa de atenção.</p></div></header>
       <div className="etiquetas">
-        <div className="etiqueta"><span className="rotulo">Produtos ativos</span><Numero valor={r.products} className="valor" formatar={inteiro} /></div>
-        <div className="etiqueta"><span className="rotulo">Unidades em estoque</span><Numero valor={r.units} className="valor" formatar={inteiro} /></div>
-        <div className="etiqueta"><span className="rotulo">Valor em estoque (custo)</span><Numero valor={r.costValueCents} className="valor" formatar={reais} /></div>
-        <div className="etiqueta destaque"><span className="rotulo">Lucro potencial</span><Numero valor={r.potentialProfitCents} className="valor" formatar={reais} /><small>se tudo for vendido ao preço de tabela</small></div>
+        <div className="etiqueta"><span className="icone azul"><IcCaixa /></span><div className="dados"><span className="rotulo">Produtos ativos</span><Numero valor={r.products} className="valor" formatar={inteiro} /></div></div>
+        <div className="etiqueta"><span className="icone roxo"><IcCamadas /></span><div className="dados"><span className="rotulo">Unidades em estoque</span><Numero valor={r.units} className="valor" formatar={inteiro} /></div></div>
+        <div className="etiqueta"><span className="icone ambar"><IcMoeda /></span><div className="dados"><span className="rotulo">Valor em estoque (custo)</span><Numero valor={r.costValueCents} className="valor" formatar={reais} /></div></div>
+        <div className="etiqueta"><span className="icone verde"><IcTendencia /></span><div className="dados"><span className="rotulo">Lucro potencial</span><Numero valor={r.potentialProfitCents} className="valor" formatar={reais} /><small>a preço de tabela</small></div></div>
       </div>
 
       {alertas > 0 && (
         <Link to="/produtos?status=zerado" className="alerta-faixa">
+          <IcAlerta className="ic-alerta" />
           <strong>{r.outOfStock > 0 && `${r.outOfStock} ${r.outOfStock === 1 ? "produto zerado" : "produtos zerados"}`}{r.outOfStock > 0 && r.lowStock > 0 && " · "}{r.lowStock > 0 && `${r.lowStock} abaixo do mínimo`}</strong>
           <span>Ver e repor →</span>
         </Link>

@@ -32,8 +32,7 @@ export default function Importar() {
 
   return (
     <main className="pagina" ref={raiz}>
-      <h1 className="titulo">Importar e exportar</h1>
-      <p className="sub">Leve o estoque para uma planilha e traga de volta. Produtos são identificados pelo SKU: se existir, é atualizado; se não, é criado.</p>
+      <header className="cabeca"><div><h1 className="titulo">Importar e exportar</h1><p className="subtitulo">Leve o estoque para uma planilha e traga de volta. Produtos são identificados pelo SKU: se existir, é atualizado; se não, é criado.</p></div></header>
 
       <div className="duas-col">
         <section className="bloco">

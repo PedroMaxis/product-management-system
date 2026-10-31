@@ -4,6 +4,7 @@ import Carregando from "../componentes/Carregando";
 import Estado from "../componentes/Estado";
 import FormMovimento from "../componentes/FormMovimento";
 import FormProduto from "../componentes/FormProduto";
+import { IcBusca, IcVazio } from "../componentes/Icones";
 import Paginacao from "../componentes/Paginacao";
 import { api, query } from "../lib/api";
 import { useAvisos } from "../lib/contextos";
@@ -57,10 +58,10 @@ export default function Produtos() {
 
   return (
     <main className="pagina" ref={raiz}>
-      <div className="topo-pagina"><h1 className="titulo">Produtos</h1><button className="btn" onClick={() => setForm({ tipo: "produto" })}>+ Novo produto</button></div>
+      <header className="cabeca"><div><h1 className="titulo">Produtos</h1><p className="subtitulo">{dados ? `${inteiro(dados.total)} ${dados.total === 1 ? "produto" : "produtos"}${q || status || categoria ? " com os filtros aplicados" : " cadastrados"}` : "Carregando…"}</p></div><button className="btn" onClick={() => setForm({ tipo: "produto" })}>+ Novo produto</button></header>
 
       <div className="barra-filtros">
-        <label className="busca"><span className="sr">Buscar</span><input type="search" value={busca} onChange={(e) => setBusca(e.target.value)} placeholder="Buscar por nome, SKU ou categoria…" /></label>
+        <label className="busca"><span className="sr">Buscar</span><IcBusca /><input type="search" value={busca} onChange={(e) => setBusca(e.target.value)} placeholder="Buscar por nome, SKU ou categoria…" /></label>
         <label><span className="sr">Categoria</span><select value={categoria} onChange={(e) => mudar({ category: e.target.value })}><option value="">Todas as categorias</option>{categorias.map((c) => <option key={c}>{c}</option>)}</select></label>
         <div className="chips" role="group" aria-label="Situação do estoque">{FILTROS.map((f) => <button key={f.id} className="chip" aria-pressed={status === f.id} onClick={() => mudar({ status: f.id })}>{f.nome}</button>)}</div>
       </div>
@@ -68,7 +69,7 @@ export default function Produtos() {
       {erro && <p className="erro" role="alert">{erro} <button className="link" onClick={carregar}>Tentar de novo</button></p>}
       {!dados && !erro && <Carregando />}
       {dados && dados.items.length === 0 && (
-        <div className="vazio"><h2>{filtrado ? "Nada com esses filtros" : "Nenhum produto ainda"}</h2><p>{filtrado ? "Tente outra busca ou limpe os filtros." : "Cadastre o primeiro produto ou importe uma planilha."}</p>{filtrado ? <button className="btn vazado" onClick={() => { setBusca(""); setParams({}); }}>Limpar filtros</button> : <button className="btn" onClick={() => setForm({ tipo: "produto" })}>Cadastrar produto</button>}</div>
+        <div className="vazio"><IcVazio className="ic-vazio" /><h2>{filtrado ? "Nada com esses filtros" : "Nenhum produto ainda"}</h2><p>{filtrado ? "Tente outra busca ou limpe os filtros." : "Cadastre o primeiro produto ou importe uma planilha."}</p>{filtrado ? <button className="btn vazado" onClick={() => { setBusca(""); setParams({}); }}>Limpar filtros</button> : <button className="btn" onClick={() => setForm({ tipo: "produto" })}>Cadastrar produto</button>}</div>
       )}
       {dados && dados.items.length > 0 && (
         <>
@@ -86,7 +87,7 @@ export default function Produtos() {
                     <td className="mono">{p.sku}</td>
                     <td><Link to={`/produtos/${p.id}`}><strong>{p.name}</strong></Link><small>{p.category}</small></td>
                     <td className="dir mono">{reais(p.priceCents)}</td>
-                    <td className="dir"><b className="mono">{inteiro(p.quantity)}</b><small>mín. {p.minQuantity}</small></td>
+                    <td className="dir"><b className="mono">{inteiro(p.quantity)}</b><small>mín. {p.minQuantity}</small><i className={`medidor medidor-${p.status}`} style={{ "--p": `${p.minQuantity > 0 ? Math.min(100, Math.round((p.quantity / (p.minQuantity * 2)) * 100)) : p.quantity > 0 ? 100 : 0}%` }} aria-hidden="true" /></td>
                     <td><Estado status={p.status} /></td>
                     <td className="mono">{percentual(p.marginPercent)}</td>
                     <td className="dir acoes-tabela">

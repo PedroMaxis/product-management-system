@@ -1,6 +1,6 @@
 # Almoxarifado
 
-Sistema de controle de estoque: cadastro de produtos, **movimentações com histórico** (entrada, saída e ajuste de inventário), alertas de estoque mínimo, painel com números e gráficos, busca, filtros, importação e exportação em CSV. API em **Express + SQLite** e front em **React + Vite**, com interface administrativa sóbria.
+Sistema de controle de estoque: cadastro de produtos, **movimentações com histórico** (entrada, saída e ajuste de inventário), alertas de estoque mínimo, painel com números e gráficos, busca, filtros, importação e exportação em CSV. API em **Express + SQLite** e front em **React + Vite**, com interface administrativa moderna e sóbria (barra lateral, indicadores com ícone, medidor de estoque por produto).
 
 | Painel | Produtos | Produto |
 |---|---|---|
@@ -21,7 +21,7 @@ Sistema de controle de estoque: cadastro de produtos, **movimentações com hist
 - **Arquivar em vez de excluir**: o produto sai da lista, o histórico fica íntegro, e dá para restaurar.
 - **Importar e exportar CSV** (por SKU: cria ou atualiza), com **simulação** antes de gravar. A importação é tudo ou nada e aponta o número da linha de cada problema.
 - Dinheiro em **centavos inteiros** no banco e na API; o formulário aceita `1.234,50`.
-- Interface corporativa padrão: fonte do sistema, fundo neutro, uma cor de destaque. Sem biblioteca de animação: num painel de estoque, o número certo na hora vale mais que efeito.
+- Interface corporativa com acabamento: fonte Inter, barra lateral escura, cartões com ícone, uma cor de destaque. Sem biblioteca de animação: num painel de estoque, o número certo na hora vale mais que efeito.
 
 > Não há login: é uma ferramenta interna. Rode atrás de uma rede confiável ou de um proxy com autenticação.
 
