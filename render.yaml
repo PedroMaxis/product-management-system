@@ -1,0 +1,11 @@
+# Um único serviço: a API também entrega o front compilado (client/dist)
+services:
+  - type: web
+    name: almoxarifado
+    runtime: node
+    buildCommand: npm ci && npm --prefix client ci && npm --prefix client run build
+    startCommand: npm start
+    envVars:
+      - { key: NODE_VERSION, value: 24 }
+      - { key: DATABASE_FILE, value: /var/data/almoxarifado.sqlite }
+    disk: { name: dados, mountPath: /var/data, sizeGB: 1 }
