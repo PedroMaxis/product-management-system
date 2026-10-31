@@ -39,7 +39,7 @@ export default function Importar() {
         <section className="bloco">
           <h2>1. Exportar</h2>
           <p>Baixe o estoque atual em CSV (abre direto no Excel, com acentos e vírgula decimal). Use o arquivo como modelo.</p>
-          <a className="btn" href="/api/export.csv" download>⬇ Baixar estoque.csv</a>
+          <a className="btn" href="/api/export.csv" download>Baixar estoque.csv</a>
           <p className="nota">Colunas: sku; nome; categoria; descricao; preco; custo; quantidade; estoque_minimo. Só <b>sku</b> e <b>nome</b> são obrigatórias.</p>
         </section>
 

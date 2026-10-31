@@ -19,7 +19,7 @@ export default function App() {
           <Route path="*" element={<main className="pagina"><div className="vazio"><h2>Página não encontrada</h2><p>Essa prateleira não existe.</p><Link to="/" className="btn">Ir ao painel</Link></div></main>} />
         </Routes>
       </div>
-      <footer className="rodape"><span className="faixa-perigo" aria-hidden="true" /><span className="mono">Almoxarifado · sem login: use atrás de uma rede confiável</span></footer>
+      <footer className="rodape"><span>Almoxarifado · sem login: use atrás de uma rede confiável</span></footer>
     </>
   );
 }

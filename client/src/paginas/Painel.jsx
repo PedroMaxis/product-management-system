@@ -31,15 +31,14 @@ export default function Painel() {
     <main className="pagina" ref={raiz}>
       <h1 className="titulo">Painel</h1>
       <div className="etiquetas">
-        <div className="etiqueta"><span className="rotulo">Produtos ativos</span><Numero valor={r.products} className="valor" formatar={inteiro} /><i className="codigo-mini" aria-hidden="true" /></div>
-        <div className="etiqueta"><span className="rotulo">Unidades em estoque</span><Numero valor={r.units} className="valor" formatar={inteiro} /><i className="codigo-mini" aria-hidden="true" /></div>
-        <div className="etiqueta"><span className="rotulo">Valor em estoque (custo)</span><Numero valor={r.costValueCents} className="valor" formatar={reais} /><i className="codigo-mini" aria-hidden="true" /></div>
+        <div className="etiqueta"><span className="rotulo">Produtos ativos</span><Numero valor={r.products} className="valor" formatar={inteiro} /></div>
+        <div className="etiqueta"><span className="rotulo">Unidades em estoque</span><Numero valor={r.units} className="valor" formatar={inteiro} /></div>
+        <div className="etiqueta"><span className="rotulo">Valor em estoque (custo)</span><Numero valor={r.costValueCents} className="valor" formatar={reais} /></div>
         <div className="etiqueta destaque"><span className="rotulo">Lucro potencial</span><Numero valor={r.potentialProfitCents} className="valor" formatar={reais} /><small>se tudo for vendido ao preço de tabela</small></div>
       </div>
 
       {alertas > 0 && (
         <Link to="/produtos?status=zerado" className="alerta-faixa">
-          <span className="listras" aria-hidden="true" />
           <strong>{r.outOfStock > 0 && `${r.outOfStock} ${r.outOfStock === 1 ? "produto zerado" : "produtos zerados"}`}{r.outOfStock > 0 && r.lowStock > 0 && " · "}{r.lowStock > 0 && `${r.lowStock} abaixo do mínimo`}</strong>
           <span>Ver e repor →</span>
         </Link>
@@ -60,7 +59,7 @@ export default function Painel() {
       <div className="duas-col">
         <section className="bloco">
           <h2>Precisam de atenção</h2>
-          {r.attention.length === 0 ? <p className="mono">Tudo acima do mínimo. 👍</p> : (
+          {r.attention.length === 0 ? <p className="mono">Tudo acima do mínimo.</p> : (
             <ul className="lista">
               {r.attention.map((p) => (
                 <li key={p.id}>
